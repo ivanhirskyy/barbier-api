@@ -362,134 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiAppointmentAppointment extends Schema.CollectionType {
-  collectionName: 'appointments';
-  info: {
-    singularName: 'appointment';
-    pluralName: 'appointments';
-    displayName: 'Appointment';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    barber: Attribute.Relation<
-      'api::appointment.appointment',
-      'manyToOne',
-      'api::barber.barber'
-    >;
-    service: Attribute.Relation<
-      'api::appointment.appointment',
-      'manyToOne',
-      'api::service.service'
-    >;
-    datetime: Attribute.DateTime & Attribute.Required;
-    notes: Attribute.RichText &
-      Attribute.SetMinMaxLength<{
-        maxLength: 200;
-      }>;
-    status: Attribute.Enumeration<['booked', 'cancelled', 'completed']> &
-      Attribute.DefaultTo<'booked'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::appointment.appointment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::appointment.appointment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiBarberBarber extends Schema.CollectionType {
-  collectionName: 'barbers';
-  info: {
-    singularName: 'barber';
-    pluralName: 'barbers';
-    displayName: 'Barber';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    avatar: Attribute.Media;
-    email: Attribute.Email;
-    phone: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 9;
-      }>;
-    appointments: Attribute.Relation<
-      'api::barber.barber',
-      'oneToMany',
-      'api::appointment.appointment'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::barber.barber',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::barber.barber',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiServiceService extends Schema.CollectionType {
-  collectionName: 'services';
-  info: {
-    singularName: 'service';
-    pluralName: 'services';
-    displayName: 'Service';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    preview: Attribute.Media;
-    duration: Attribute.Integer;
-    price: Attribute.Decimal;
-    appointments: Attribute.Relation<
-      'api::service.service',
-      'oneToMany',
-      'api::appointment.appointment'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::service.service',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::service.service',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -916,6 +788,127 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAppointmentAppointment extends Schema.CollectionType {
+  collectionName: 'appointments';
+  info: {
+    singularName: 'appointment';
+    pluralName: 'appointments';
+    displayName: 'Appointment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    datetime: Attribute.DateTime;
+    status: Attribute.Enumeration<['booked', 'cancelled', 'completed']>;
+    notes: Attribute.RichText;
+    barber: Attribute.Relation<
+      'api::appointment.appointment',
+      'manyToOne',
+      'api::barber.barber'
+    >;
+    service: Attribute.Relation<
+      'api::appointment.appointment',
+      'manyToOne',
+      'api::service.service'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::appointment.appointment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::appointment.appointment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBarberBarber extends Schema.CollectionType {
+  collectionName: 'barbers';
+  info: {
+    singularName: 'barber';
+    pluralName: 'barbers';
+    displayName: 'Barber';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    avatar: Attribute.Media;
+    email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    phone: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 9;
+      }>;
+    appointments: Attribute.Relation<
+      'api::barber.barber',
+      'oneToMany',
+      'api::appointment.appointment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::barber.barber',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::barber.barber',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiServiceService extends Schema.CollectionType {
+  collectionName: 'services';
+  info: {
+    singularName: 'service';
+    pluralName: 'services';
+    displayName: 'Service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    preview: Attribute.Media;
+    duration: Attribute.Integer & Attribute.Required;
+    price: Attribute.Decimal;
+    appointments: Attribute.Relation<
+      'api::service.service',
+      'oneToMany',
+      'api::appointment.appointment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::service.service',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -926,9 +919,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::appointment.appointment': ApiAppointmentAppointment;
-      'api::barber.barber': ApiBarberBarber;
-      'api::service.service': ApiServiceService;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -937,6 +927,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::appointment.appointment': ApiAppointmentAppointment;
+      'api::barber.barber': ApiBarberBarber;
+      'api::service.service': ApiServiceService;
     }
   }
 }

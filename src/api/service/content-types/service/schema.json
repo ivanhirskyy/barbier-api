@@ -4,8 +4,7 @@
   "info": {
     "singularName": "service",
     "pluralName": "services",
-    "displayName": "Service",
-    "description": ""
+    "displayName": "Service"
   },
   "options": {
     "draftAndPublish": true
@@ -13,21 +12,19 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "preview": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     },
     "duration": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "price": {
       "type": "decimal"

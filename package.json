@@ -1,5 +1,5 @@
 {
-  "name": "barbier-api",
+  "name": "barbier-api-pg",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -11,11 +11,11 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.24.1",
-    "@strapi/plugin-users-permissions": "4.24.1",
-    "@strapi/plugin-i18n": "4.24.1",
-    "@strapi/plugin-cloud": "4.24.1",
-    "better-sqlite3": "8.6.0",
+    "@strapi/strapi": "4.24.3",
+    "@strapi/plugin-users-permissions": "4.24.3",
+    "@strapi/plugin-i18n": "4.24.3",
+    "@strapi/plugin-cloud": "4.24.3",
+    "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
@@ -25,7 +25,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "180d70a0-4ce5-47d6-b03f-323e613e49b8"
+    "uuid": "3d3e2a87-7165-408a-b9cc-7b35c6669329"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",

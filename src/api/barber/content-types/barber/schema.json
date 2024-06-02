@@ -4,8 +4,7 @@
   "info": {
     "singularName": "barber",
     "pluralName": "barbers",
-    "displayName": "Barber",
-    "description": ""
+    "displayName": "Barber"
   },
   "options": {
     "draftAndPublish": true
@@ -17,15 +16,16 @@
       "required": true
     },
     "avatar": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": false
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true,
+      "unique": true
     },
     "phone": {
       "type": "string",
