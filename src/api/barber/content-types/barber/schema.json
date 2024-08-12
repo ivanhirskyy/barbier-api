@@ -4,7 +4,8 @@
   "info": {
     "singularName": "barber",
     "pluralName": "barbers",
-    "displayName": "Barber"
+    "displayName": "Barber",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,11 +17,12 @@
       "required": true
     },
     "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "email": {
       "type": "email",
@@ -36,6 +38,10 @@
       "relation": "oneToMany",
       "target": "api::appointment.appointment",
       "mappedBy": "barber"
+    },
+    "uid": {
+      "type": "customField",
+      "customField": "plugin::strapi-advanced-uuid.uuid"
     }
   }
 }
